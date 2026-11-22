@@ -6,7 +6,7 @@
 
 ## 先说最要紧的
 
-- 三个内核技能：`change-verify`（交付前核验）、`browser-debug`（临时无头 Chromium）、`doc-slim`（文档精简）。
+- 三个内核技能：`change-verify`（交付前核验）、`browser-debug`（临时无头 Chromium）、`doc-slim`（文档精简）。`change-verify` 只验执行结果、最多两轮、只报告不修。
 - `./install.sh` 默认软链到 `~/.dsh/skills`，仓库更新即生效；替换前自动备份。
 - 支持 `--target dsh|agents|claude|workbuddy`、`--project <repo>`、`--copy`。
 - 技能正文已脱敏：不含本机绝对路径、个人目录、内网地址；路径用「本技能目录 / 工作区根」表达。
