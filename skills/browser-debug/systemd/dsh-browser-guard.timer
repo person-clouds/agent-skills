@@ -1,0 +1,11 @@
+[Unit]
+Description=每分钟检查一次残留的 DSH 临时无头 Chromium
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+AccuracySec=10s
+Unit=dsh-browser-guard.service
+
+[Install]
+WantedBy=timers.target

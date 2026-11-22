@@ -1,0 +1,8 @@
+[Unit]
+Description=DSH 临时无头 Chromium 清理守卫
+Documentation=file://@HERE@/SKILL.md
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash @HERE@/scripts/browser-guard.sh --apply
+Nice=10
