@@ -6,7 +6,8 @@
 
 ## 先说最要紧的
 
-- 三个内核技能：`change-verify`（交付前核验）、`browser-debug`（临时无头 Chromium）、`doc-slim`（文档精简）。`change-verify` 只验执行结果、最多两轮、只报告不修。
+- 两个内核技能：`browser-debug`（临时无头 Chromium）、`doc-slim`（文档精简）。
+- `change-verify`（交付前核验）已迁入 `dsh-workflow-shortcuts` 作为内置技能，本仓不再保留副本；非 DSH 平台需要时从该仓复制 `skills/change-verify/`。
 - `./install.sh` 默认软链到 `~/.dsh/skills`，仓库更新即生效；替换前自动备份。
 - 支持 `--target dsh|agents|claude|workbuddy`、`--project <repo>`、`--copy`。
 - 技能正文已脱敏：不含本机绝对路径、个人目录、内网地址；路径用「本技能目录 / 工作区根」表达。
@@ -19,7 +20,7 @@ git clone https://github.com/person-clouds/agent-skills.git
 cd agent-skills
 
 ./install.sh                       # 全部 -> ~/.dsh/skills（软链）
-./install.sh change-verify         # 只装一个
+./install.sh browser-debug         # 只装一个
 ./install.sh --target agents       # Codex 等扫描 ~/.agents/skills 的平台
 ./install.sh --target workbuddy    # WorkBuddy 用户级（不支持 --project）
 ./install.sh --target claude --copy
@@ -32,7 +33,6 @@ cd agent-skills
 
 ```text
 skills/
-├── change-verify/SKILL.md
 ├── browser-debug/          SKILL.md + scripts/ + systemd/ + install-guard.sh
 └── doc-slim/SKILL.md
 install.sh
@@ -47,6 +47,8 @@ install.sh
 ## 与产品仓技能的区别
 
 `dsh-local-vision`、`free-ai-router`、`workdir-rag`、`dsh-superagent` 等技能随各自产品仓发布，不复制到这里；本仓只收录跨产品通用的工作流技能。
+
+`change-verify` 依赖 `dsh-context-guard` 的核验态（标题 `V：`/`TODO：V：`）与 `/V` 入口，属于 DSH 产品能力，随 `dsh-workflow-shortcuts` ≥ `0.4.0` 发布并从 `ctx.inject(['skills'])` 注册。
 
 ## 回滚
 
